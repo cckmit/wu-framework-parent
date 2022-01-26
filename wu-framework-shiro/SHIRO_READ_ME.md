@@ -95,7 +95,7 @@
 
 
 ### 版本1.0.1 添加异常处理  返回code 集成
-### 版本1.0.3 框架添加注解扫描 使用示例
+### 版本1.0.4 框架添加注解扫描 使用示例
     @Component
     @EnableAuthorizationServer
     public class AuthorizationServerConfig {

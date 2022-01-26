@@ -19,4 +19,10 @@ import java.lang.annotation.*;
 @Documented
 @Indexed
 public @interface LayerClass {
+
+    /**
+     * class name 例如:layer_class
+     * @return
+     */
+    String name() default "";
 }

@@ -15,7 +15,7 @@ mvn clean install deploy -P oss -X
 
 export GPG_TTY=$(tty)
 
-### 1.0.3
+### 1.0.4
 
      功能: 
         1.添加layer 层的概念

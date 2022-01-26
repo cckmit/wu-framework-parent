@@ -25,7 +25,7 @@ public class ShiroProperties {
     /**
      * 加密盐
      */
-    private String secretKey = "www.wu2020.top";
+    private String secretKey = "easy.com";
     /**
      * 过期时间2个小时
      */

@@ -1,10 +1,10 @@
 package com.wu.freamwork.controller;
 
 
-import com.wu.framework.inner.layer.web.EasyController;
 import com.wu.framework.inner.common.util.EasyCaptcha;
 import com.wu.framework.inner.common.util.QRBO;
 import com.wu.framework.inner.common.util.QRCodeGenerator;
+import com.wu.framework.inner.layer.web.EasyController;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

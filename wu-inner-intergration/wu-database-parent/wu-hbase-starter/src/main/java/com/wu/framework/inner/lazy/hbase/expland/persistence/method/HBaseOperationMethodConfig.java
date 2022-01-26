@@ -2,6 +2,9 @@ package com.wu.framework.inner.lazy.hbase.expland.persistence.method;
 
 import com.wu.framework.inner.lazy.hbase.expland.persistence.HBaseOperation;
 import com.wu.framework.inner.lazy.hbase.expland.persistence.proxy.HBaseOperationProxy;
+import org.apache.hadoop.hbase.client.Admin;
+import org.apache.hadoop.hbase.client.Connection;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -15,11 +18,6 @@ import java.lang.reflect.Proxy;
  */
 @ComponentScan
 public class HBaseOperationMethodConfig {
-    private final HBaseOperationProxy hBaseOperationProxy;
-
-    public HBaseOperationMethodConfig(HBaseOperationProxy hBaseOperationProxy) {
-        this.hBaseOperationProxy = hBaseOperationProxy;
-    }
 
 
     /**
@@ -29,8 +27,9 @@ public class HBaseOperationMethodConfig {
      * @author Jia wei Wu
      * @date 2021/3/28 9:32 下午
      **/
+    @ConditionalOnBean(Connection.class)
     @Bean
-    public HBaseOperation hBaseOperation() {
+    public HBaseOperation hBaseOperation(HBaseOperationProxy hBaseOperationProxy) {
         return (HBaseOperation) Proxy.newProxyInstance(HBaseOperation.class.getClassLoader(), new Class[]{HBaseOperation.class}, hBaseOperationProxy);
     }
 

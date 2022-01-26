@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 @Accessors(chain = true)
 @Data
-@LazyTable(value = "user", comment = "用户信息表")
+@LazyTable(tableName = "user", comment = "用户信息表")
 @AllArgsConstructor
 @NoArgsConstructor
 public class DataBaseUser implements Serializable {

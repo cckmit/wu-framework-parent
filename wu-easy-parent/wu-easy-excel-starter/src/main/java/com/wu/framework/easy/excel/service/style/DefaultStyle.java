@@ -6,6 +6,8 @@ import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
+import java.lang.annotation.Annotation;
+
 
 /**
  * @author : Jia wei Wu
@@ -23,6 +25,10 @@ public class DefaultStyle implements Style {
      */
     @Override
     public HSSFCellStyle titleStyle(StyleParam styleParam) {
+        Annotation filedAnnotation = styleParam.getFiledAnnotation();
+        if (!EasyExcelFiled.class.isAssignableFrom(filedAnnotation.getClass())) {
+            return styleParam.getWorkbook().createCellStyle();
+        }
         EasyExcelFiled easyExcelFiled = styleParam.getFiledAnnotation(EasyExcelFiled.class);
         final HSSFCellStyle style = styleParam.getWorkbook().createCellStyle();
 //        设置背景色：   style.setFillBackgroundColor(IndexedColors.BLUE.index);
@@ -54,6 +60,10 @@ public class DefaultStyle implements Style {
      */
     @Override
     public HSSFCellStyle columnStyle(StyleParam styleParam) {
+        Annotation filedAnnotation = styleParam.getFiledAnnotation();
+        if (!EasyExcelFiled.class.isAssignableFrom(filedAnnotation.getClass())) {
+            return styleParam.getWorkbook().createCellStyle();
+        }
         EasyExcelFiled easyExcelFiled = styleParam.getFiledAnnotation(EasyExcelFiled.class);
         final HSSFCellStyle style = styleParam.getWorkbook().createCellStyle();
 //        设置背景色：

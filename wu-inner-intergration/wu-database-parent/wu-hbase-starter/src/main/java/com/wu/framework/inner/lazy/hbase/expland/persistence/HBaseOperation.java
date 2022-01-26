@@ -58,7 +58,7 @@ public interface HBaseOperation {
      * @param
      * @return
      * @exception/throws
-     * @author 吴佳伟
+     * @author Jia wei Wu
      * @date 2021/4/9 下午1:05
      */
     @ProxyStrategicApproach(proxyClass = HBaseOperationUpsertListMethodAdapter.class)

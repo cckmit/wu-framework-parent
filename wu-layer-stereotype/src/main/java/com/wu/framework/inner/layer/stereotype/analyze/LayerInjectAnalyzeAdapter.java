@@ -1,8 +1,5 @@
 package com.wu.framework.inner.layer.stereotype.analyze;
 
-import com.wu.framework.inner.layer.stereotype.Layer;
-import com.wu.framework.inner.layer.stereotype.LayerDefault;
-
 import java.lang.annotation.Annotation;
 
 /**
@@ -11,9 +8,9 @@ import java.lang.annotation.Annotation;
  * @author Jia wei Wu
  * @date 2021/4/1 下午3:32
  */
-public class LayerInjectAnalyzeAdapter implements LayerDefault, Layer, LayerAnalyzeAdapter {
+public class LayerInjectAnalyzeAdapter implements LayerAnalyzeAdapter {
 
-    public Annotation analyze(Class clazz){
+    public Annotation analyze(Class clazz) {
         return null;
     }
 }

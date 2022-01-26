@@ -7,6 +7,7 @@ import com.wu.framework.easy.stereotype.upsert.config.UpsertConfig;
 import com.wu.framework.easy.stereotype.upsert.dynamic.EasyUpsertDS;
 import com.wu.framework.easy.stereotype.upsert.dynamic.EasyUpsertStrategy;
 import com.wu.framework.easy.stereotype.upsert.enums.EasyUpsertType;
+import com.wu.framework.easy.stereotype.upsert.exceptions.IllegalDataSourceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -74,7 +75,7 @@ public class DynamicEasyUpsert extends AbstractDynamicEasyUpsert implements Init
             log.info("使用方式:【{}】", peek.type());
             return iEasyUpsertMap.get(peek.type());
         } else {
-            throw new RuntimeException("不能找到类型为" + peek + "的数据源");
+            throw new IllegalDataSourceException("不能找到类型为" + peek + "的数据源");
         }
     }
 

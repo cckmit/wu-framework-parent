@@ -26,10 +26,7 @@ public @interface LazyTable {
      *
      * @return
      */
-    @AliasFor(attribute = "tableName")
-    String value() default "";
-
-    @AliasFor(attribute = "value")
+    @AliasFor(attribute = "name", annotation = LayerClass.class)
     String tableName() default "";
 
     /**

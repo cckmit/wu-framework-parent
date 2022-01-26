@@ -21,6 +21,9 @@ public class HBaseConfigProperties {
     @Deprecated
     private Map<String, String> confMaps;
 
+    /**
+     * zookeeper1:2181,zookeeper2:2181
+     */
     private String zookeeperQuorum;
 
     public Map<String, String> getConfMaps() {

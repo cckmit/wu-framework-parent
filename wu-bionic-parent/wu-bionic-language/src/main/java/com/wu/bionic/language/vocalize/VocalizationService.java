@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class VocalizationService implements Vocalization {
     private final LazyOperation lazyOperation;
 
+
     public VocalizationService(LazyOperation lazyOperation) {
         this.lazyOperation = lazyOperation;
     }

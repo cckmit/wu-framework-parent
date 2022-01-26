@@ -152,11 +152,6 @@ public class LazyTableAnnotation implements LazyTable {
      * @return
      */
     @Override
-    public String value() {
-        return tableName;
-    }
-
-    @Override
     public String tableName() {
         return tableName;
     }

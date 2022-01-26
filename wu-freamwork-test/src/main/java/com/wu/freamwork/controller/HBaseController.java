@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * description HBase测试操作
  *
- * @author 吴佳伟
+ * @author Jia wei Wu
  * @date 2021/4/8 下午4:11
  */
 @Api(tags = "HBase测试操作")

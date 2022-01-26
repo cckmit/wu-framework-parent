@@ -13,13 +13,13 @@ spring:
         master:
           username: root
           password: wujiawei
-          #          url: jdbc:mysql://www.wu2020.top:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+          #          url: jdbc:mysql://easy.com:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
           url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
           driver-class-name: com.mysql.cj.jdbc.Driver
         upsert:
           username: root
           password: wujiawei
-          #          url: jdbc:mysql://www.wu2020.top:3306/upsert?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+          #          url: jdbc:mysql://easy.com:3306/upsert?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
           url: jdbc:mysql://127.0.0.1:3306/upsert?useUnicode=true&characterEncoding=utf-8&useSSL=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
           driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -32,7 +32,7 @@ spring:
 #        database-config-map:
 #          master:
 #            driver: com.mysql.jdbc.Driver
-#            url: jdbc:mysql://www.wu2020.top:3306/test
+#            url: jdbc:mysql://easy.com:3306/test
 #            username: root
 #            password: wujiawei
 #          localhost:

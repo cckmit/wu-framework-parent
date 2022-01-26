@@ -2,6 +2,7 @@ package com.wu.framework.inner.lazy.hbase.expland.persistence.method;
 
 import com.wu.framework.inner.layer.stereotype.LayerField;
 import com.wu.framework.inner.layer.stereotype.analyze.AnalyzeField;
+import com.wu.framework.inner.lazy.hbase.expland.analyze.HBaseLayerAnalyzeAdapter;
 import com.wu.framework.inner.lazy.hbase.expland.persistence.stereotype.HBaseTable;
 import org.apache.hadoop.hbase.NamespaceDescriptor;
 import org.apache.hadoop.hbase.TableName;
@@ -21,11 +22,8 @@ import java.util.stream.Collectors;
  * @describe :
  * @date : 2021/3/28 10:12 下午
  */
-public abstract class HBaseOperationMethodAbstractAdapter
-        implements HBaseOperationMethodAdapter<HBaseOperationMethodAdapter.HBaseExecuteParams> {
+public abstract class HBaseOperationMethodAbstractAdapter extends HBaseLayerAnalyzeAdapter implements HBaseOperationMethodAdapter<HBaseOperationMethodAdapter.HBaseExecuteParams> {
 
-    private final Admin admin;
-    private final Connection connection;
 
     /**
      * 是否存在唯一字段注解
@@ -33,10 +31,6 @@ public abstract class HBaseOperationMethodAbstractAdapter
     private Map<Class, List<AnalyzeField>> UNIQUE_FIELD = new HashMap<>();
 
 
-    protected HBaseOperationMethodAbstractAdapter(Admin admin, Connection connection) {
-        this.admin = admin;
-        this.connection = connection;
-    }
 
 
     @Override
@@ -47,7 +41,7 @@ public abstract class HBaseOperationMethodAbstractAdapter
     @Override
     public Object run(HBaseExecuteParams hBaseExecuteParam) throws Exception {
         // 执行前处理操作
-        perfectTable(connection.getAdmin(), hBaseExecuteParam.getObjects()[0]);
+        perfectTable(hBaseExecuteParam.getConnection().getAdmin(), hBaseExecuteParam.getObjects()[0]);
         return execute(hBaseExecuteParam.getConnection(), hBaseExecuteParam.getObjects());
     }
 
@@ -75,7 +69,7 @@ public abstract class HBaseOperationMethodAbstractAdapter
         HBaseTable hBaseTable = analyzeClass(clazz);
         if (hBaseTable.perfectTable()) {
 
-            NamespaceDescriptor namespaceDescriptor = NamespaceDescriptor.create(hBaseTable.nameSpace()).build();
+            NamespaceDescriptor namespaceDescriptor = NamespaceDescriptor.create(hBaseTable.namespace()).build();
 
             try {
                 admin.createNamespace(namespaceDescriptor);
@@ -83,7 +77,7 @@ public abstract class HBaseOperationMethodAbstractAdapter
                 System.out.println(namespaceDescriptor.getName() + "命名空间已存在!");
             }
 
-            TableName tableName = TableName.valueOf(hBaseTable.nameSpace(), hBaseTable.tableName());
+            TableName tableName = TableName.valueOf(hBaseTable.namespace(), hBaseTable.tableName());
             TableDescriptorBuilder tableDescriptorBuilder = TableDescriptorBuilder.newBuilder(tableName).
                     setColumnFamily(new ColumnFamilyDescriptorBuilder.ModifyableColumnFamilyDescriptor(Bytes.toBytes(hBaseTable.columnFamily())));
             TableDescriptor build = tableDescriptorBuilder.build();
@@ -105,7 +99,7 @@ public abstract class HBaseOperationMethodAbstractAdapter
      * @param
      * @return
      * @exception/throws
-     * @author 吴佳伟
+     * @author Jia wei Wu
      * @date 2021/4/9 下午1:25
      */
     public String hBaseRow(List<AnalyzeField> analyzeFieldList, Object source) {

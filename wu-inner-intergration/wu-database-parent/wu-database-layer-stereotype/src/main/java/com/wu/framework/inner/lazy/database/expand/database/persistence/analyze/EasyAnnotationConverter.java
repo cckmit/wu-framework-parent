@@ -39,8 +39,8 @@ public class EasyAnnotationConverter {
      */
     public static String getCustomTableValue(Class clazz) {
         LazyTable lazyTable = AnnotationUtils.getAnnotation(clazz, LazyTable.class);
-        if (null != lazyTable && !ObjectUtils.isEmpty(lazyTable.value())) {
-            return lazyTable.value();
+        if (null != lazyTable && !ObjectUtils.isEmpty(lazyTable.tableName())) {
+            return lazyTable.tableName();
         }
         return CamelAndUnderLineConverter.humpToLine2(clazz.getSimpleName());
     }

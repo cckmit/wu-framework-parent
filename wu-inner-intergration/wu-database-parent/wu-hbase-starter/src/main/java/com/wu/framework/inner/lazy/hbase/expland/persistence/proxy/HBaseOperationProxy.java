@@ -42,7 +42,6 @@ public class HBaseOperationProxy implements InvocationHandler, InitializingBean 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         final ProxyStrategicApproach mergedAnnotation = AnnotatedElementUtils.findMergedAnnotation(method, ProxyStrategicApproach.class);
         if (!ObjectUtils.isEmpty(mergedAnnotation)) {
-
             return HBASE_OPERATION_METHOD_MAP.get(mergedAnnotation.proxyClass()).run(HBaseOperationMethodAdapter.HBaseExecuteParams.build().setConnection(connection).setObjects(args));
         } else {
             return method.invoke(proxy,args);

@@ -15,7 +15,7 @@ import java.time.LocalDate;
  */
 @Accessors(chain = true)
 @Data
-@HBaseTable(tableName = "hbase", columnFamily = "hbase_user_bo", perfectTable = true,nameSpace = "hbase")
+@HBaseTable(tableName = "java_hbase_user", columnFamily = "hbase_user_bo", perfectTable = true, namespace = "hbase_java")
 public class HBaseUserBo {
 
     @HBaseTableUnique

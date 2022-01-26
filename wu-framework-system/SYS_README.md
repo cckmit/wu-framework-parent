@@ -159,13 +159,13 @@
     sys_user_message
     sys_user_role
     提供基础的业务
-### sys 1.0.1升级1.0.3 添加RequiredPermission 权限注解
+### sys 1.0.1升级1.0.4 添加RequiredPermission 权限注解
     1.内部整合依赖拆分 db  file  swagger
     2.业务服务支持二次开发
     3.实现枚举 自动装载入库
     4.新增分配指定角色标识给指定用户
     5.优化AccessTokenUser RequiredRole RequiredPermission 同时使用
-### sys 1.0.3升级 1.0.3
+### sys 1.0.4升级 1.0.4
     1.wuEnumsProperty 兼容 wuEnumsService
 ### TODO 下个版本1.0.4
     1.wuEnumsProperty 替换 wuEnumsService 添加枚举是否自动装载按钮 (已经完成)

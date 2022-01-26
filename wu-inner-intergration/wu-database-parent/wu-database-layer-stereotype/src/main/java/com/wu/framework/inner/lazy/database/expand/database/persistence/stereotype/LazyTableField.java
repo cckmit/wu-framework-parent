@@ -110,18 +110,8 @@ public @interface LazyTableField {
     /**
      * 字段索引类型(数据库)
      */
+    @AliasFor(attribute = "indexType",annotation =LayerField.class )
     LayerField.LayerFieldType indexType() default LayerField.LayerFieldType.FILE_TYPE;
-
-    /**
-     * {@link LayerField.LayerFieldType}
-     */
-    @Deprecated
-    enum TableFileIndexType {
-        FILE_TYPE,
-        ID,
-        UNIQUE,
-        AUTOMATIC;
-    }
 
     @Getter
     @AllArgsConstructor

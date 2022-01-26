@@ -2,8 +2,6 @@ package com.wu.framework.inner.lazy.hbase.expland.persistence.method;
 
 
 import com.wu.framework.inner.layer.stereotype.analyze.AnalyzeField;
-import com.wu.framework.inner.layer.stereotype.proxy.ProxyStrategicApproach;
-import com.wu.framework.inner.lazy.hbase.expland.constant.HBaseOperationMethodCounts;
 import com.wu.framework.inner.lazy.hbase.expland.persistence.stereotype.HBaseTable;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
@@ -23,20 +21,12 @@ import java.util.UUID;
 /**
  * @author : Jia wei Wu
  * @version 1.0
- * @describe :
+ * @describe : HBaseOperation操作Insert数据到仓库
  * @date : 2021/3/29 7:19 下午
  */
 @Component
 public class HBaseOperationInsertListMethodAdapter extends HBaseOperationMethodAbstractAdapter {
 
-    private final Admin admin;
-    private final Connection connection;
-
-    public HBaseOperationInsertListMethodAdapter(Admin admin, Connection connection) {
-        super(admin, connection);
-        this.admin = admin;
-        this.connection = connection;
-    }
 
     @Override
     public Object execute(Connection connection, Object... args) throws Exception {
@@ -48,7 +38,7 @@ public class HBaseOperationInsertListMethodAdapter extends HBaseOperationMethodA
             entityClass = ((List) entity).get(0).getClass();
             // 处理数据
             HBaseTable hBaseTable = analyzeClass(entityClass);
-            table = connection.getTable(TableName.valueOf(hBaseTable.nameSpace(), hBaseTable.tableName()));
+            table = connection.getTable(TableName.valueOf(hBaseTable.namespace(), hBaseTable.tableName()));
 
             List<AnalyzeField> analyzeFieldList = analyzeField(entityClass);
             List<Put> putList = new ArrayList<>();

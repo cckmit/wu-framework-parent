@@ -9,6 +9,6 @@ import com.wu.framework.inner.layer.stereotype.LayerDefault;
  * @describe :
  * @date : 2021/4/2 7:17 下午
  */
-public class LayerClassConverterAdapter implements LayerDefault, Layer, LayerConverterAdapter {
+public class LayerClassConverterAdapter implements LayerConverterAdapter {
 
 }

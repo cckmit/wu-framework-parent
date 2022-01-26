@@ -209,6 +209,7 @@ public interface MySQLDataProcessAnalyze extends LayerDefault,SQLAnalyze{
                 statement.close();
                 updateColumn = executeBatch.length;
                 perfectTableSQL = createTableSQL;
+                log.info("create table {} success",tableName);
             } else {
                 String string = resultSet.getString(1);
                 ResultSet columns = metaData.getColumns(lazyTableAnnotation.schema(), "%", tableName, "%");

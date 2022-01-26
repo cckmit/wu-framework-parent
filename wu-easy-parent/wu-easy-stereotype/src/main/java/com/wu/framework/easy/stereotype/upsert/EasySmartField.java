@@ -6,6 +6,7 @@ import com.wu.framework.inner.layer.stereotype.LayerField;
 import com.wu.framework.inner.lazy.database.expand.database.persistence.stereotype.LazyTableField;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Indexed;
 
@@ -36,11 +37,13 @@ public @interface EasySmartField {
 
     /**
      * 字段名
+     * 删除原因 多个容易模糊啊
      */
-    @AliasFor(attribute = "name")
+    @Deprecated
+    @AliasFor(attribute = "name",annotation = LayerField.class)
     String value() default "";
 
-    @AliasFor(attribute = "value")
+    @AliasFor(attribute = "name",annotation = LayerField.class)
     String name() default "";
 
     /**
@@ -80,11 +83,13 @@ public @interface EasySmartField {
     /**
      * 数据为空的时候使用字段默认值
      */
+    @AliasFor(annotation = LazyTableField.class,attribute = "fieldDefaultValue")
     String fieldDefaultValue() default "";
 
     /**
      * 转换指定类型的枚举 DefaultIEnum 不转换  转换失败默认是-1
      */
+    @AliasFor(annotation = LazyTableField.class,attribute = "iEnum")
     Class<? extends IEnum> iEnum() default DefaultIEnum.class;
 
     /**
@@ -106,59 +111,15 @@ public @interface EasySmartField {
      *
      * @return
      */
-    String convert() default "";
+    String convert() default  "";
 
 
     /**
      * 字段索引类型(数据库)
      */
+    @AliasFor(attribute = "indexType",annotation =LayerField.class )
     LayerField.LayerFieldType indexType() default LayerField.LayerFieldType.FILE_TYPE;
 
-    /**
-     * {@link LayerField.LayerFieldType}
-     */
-    @Deprecated
-    enum TableFileIndexType {
-        FILE_TYPE,
-        ID,
-        UNIQUE,
-        AUTOMATIC;
-    }
-
-    @Getter
-    @AllArgsConstructor
-    enum FileType {
-        STRING(Collections.singletonList(String.class), " varchar(255) "),
-        BYTE(Arrays.asList(Byte.class, byte.class), " varbinary(1024) "),
-        INTEGER(Arrays.asList(Integer.class, int.class), " int(11) "),
-        LONG(Arrays.asList(Long.class, long.class), " bigint "),
-        LOCAL_DATE_TIME(Arrays.asList(LocalDateTime.class, Timestamp.class), " datetime "),
-        LOCAL_DATE(Arrays.asList(LocalDate.class, Date.class), " date "),
-        DOUBLE(Arrays.asList(Double.class, double.class), " double "),
-        FLOAT(Arrays.asList(Float.class, float.class), " float "),
-        BINARY(Arrays.asList(File.class, InputStream.class), " Blob ");
-        private static Map<Class, String> TYPE_MAP = new HashMap<>();
-
-        static {
-            for (FileType fileType : values()) {
-                Map<Class, String> classStringMap =
-                        fileType.clazz.stream().collect(Collectors.toMap(Function.identity(), c -> fileType.type));
-                TYPE_MAP.putAll(classStringMap);
-            }
-        }
-
-        private List<Class> clazz;
-        private String type;
-
-        public static String getTypeByClass(Class clazz) {
-            for (FileType fileType : values()) {
-                if (fileType.clazz.contains(clazz)) {
-                    return fileType.type;
-                }
-            }
-            return STRING.type;
-        }
-    }
 
 
     @AllArgsConstructor

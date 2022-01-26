@@ -2,8 +2,6 @@ package com.wu.framework.inner.lazy.hbase.expland.persistence.method;
 
 
 import com.wu.framework.inner.layer.stereotype.analyze.AnalyzeField;
-import com.wu.framework.inner.layer.stereotype.proxy.ProxyStrategicApproach;
-import com.wu.framework.inner.lazy.hbase.expland.constant.HBaseOperationMethodCounts;
 import com.wu.framework.inner.lazy.hbase.expland.persistence.stereotype.HBaseTable;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
@@ -27,21 +25,12 @@ import java.util.UUID;
 @Deprecated
 public class HBaseOperationInsertMethodAdapter extends HBaseOperationMethodAbstractAdapter {
 
-    private final Admin admin;
-    private final Connection connection;
-
-    public HBaseOperationInsertMethodAdapter(Admin admin, Connection connection) {
-        super(admin, connection);
-        this.admin = admin;
-        this.connection = connection;
-    }
-
 
     @Override
     public Object execute(Connection connection, Object... args) throws Exception {
         Object entity = args[0];
         HBaseTable hBaseTable = analyzeClass(entity.getClass());
-        Table table = connection.getTable(TableName.valueOf(hBaseTable.nameSpace(), hBaseTable.tableName()));
+        Table table = connection.getTable(TableName.valueOf(hBaseTable.namespace(), hBaseTable.tableName()));
 
         List<AnalyzeField> analyzeFieldList = analyzeField(entity.getClass());
         Put put = new Put(Bytes.toBytes(UUID.randomUUID().toString()));

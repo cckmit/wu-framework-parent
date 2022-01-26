@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 /**
  * description  层代理
  *
- * @author 吴佳伟
+ * @author Jia wei Wu
  * @date 2021/4/7 下午3:14
  */
 @Target(ElementType.TYPE)
@@ -27,7 +27,7 @@ public @interface LayerProxy {
      * @param
      * @return
      * @exception/throws
-     * @author 吴佳伟
+     * @author Jia wei Wu
      * @date 2021/4/7 下午3:15
      */
     Class proxyInterface();

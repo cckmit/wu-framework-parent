@@ -1,3 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wu.framework.easy.excel.web.ExcelResponseHandler
+com.wu.framework.easy.excel.web.ExcelResponseHandler,\
+com.wu.framework.easy.excel.web.ExcelConfig

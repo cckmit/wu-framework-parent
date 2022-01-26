@@ -1,8 +1,9 @@
 package com.wu.framework.easy.stereotype.upsert;
 
-import com.wu.framework.inner.layer.data.SmartMark;
+import com.wu.framework.inner.layer.data.LayerData;
 import com.wu.framework.inner.layer.stereotype.LayerClass;
 import com.wu.framework.inner.lazy.database.expand.database.persistence.stereotype.LazyTable;
+import com.wu.framework.inner.lazy.hbase.expland.persistence.stereotype.HBaseTable;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Indexed;
 
@@ -20,6 +21,8 @@ import java.lang.annotation.*;
 @Indexed
 @LayerClass
 @LazyTable
+@LayerData
+@HBaseTable
 public @interface EasySmart {
 
     /**
@@ -27,10 +30,7 @@ public @interface EasySmart {
      *
      * @return
      */
-    @AliasFor(attribute = "tableName", annotation = LazyTable.class)
-    String value() default "";
-
-    @AliasFor(attribute = "value", annotation = LazyTable.class)
+    @AliasFor(attribute = "name", annotation = LayerClass.class)
     String tableName() default "";
 
     /**
@@ -43,9 +43,10 @@ public @interface EasySmart {
 
     /**
      * 数据下钻
-     * the field use Annotation with {@link SmartMark}
+     * the field use Annotation with {@link LayerData}
      */
 
+    @AliasFor(attribute = "dataDrillDown", annotation = LayerData.class)
     boolean dataDrillDown() default false;
 
     /**
@@ -117,6 +118,7 @@ public @interface EasySmart {
      *
      * @return
      */
+    @AliasFor(attribute = "columnFamily",annotation = HBaseTable.class)
     String columnFamily() default "";
 
     /**
@@ -124,4 +126,14 @@ public @interface EasySmart {
      * 针对数据源 如mysql查询结果、http请求结果中包含的数据字段不再当前对象中
      */
     boolean smartFillField() default false;
+
+
+    /**
+     * 表空间
+     * @return
+     */
+    @AliasFor(attribute = "namespace",annotation = HBaseTable.class)
+    String namespace() default "default";
+
+
 }

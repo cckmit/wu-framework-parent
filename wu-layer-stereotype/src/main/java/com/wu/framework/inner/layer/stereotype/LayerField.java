@@ -22,6 +22,16 @@ public @interface LayerField {
 
     boolean exist() default true;
 
+    /**
+     * 字段名(默认驼峰)
+     */
+     String name() default "";
+
+    /**
+     * 字段索引类型
+     * @return
+     */
+    LayerField.LayerFieldType indexType() default LayerField.LayerFieldType.FILE_TYPE;
 
     enum LayerFieldType {
         FILE_TYPE,

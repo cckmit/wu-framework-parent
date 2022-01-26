@@ -5,13 +5,13 @@
     <parent>
         <groupId>top.wu2020</groupId>
         <artifactId>wu-framework-parent</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>wu-framework-shiro</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <description>新增令牌移出接口 新增令牌移出注解</description>
 
 

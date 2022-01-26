@@ -2,7 +2,7 @@
 
     依赖引入
      <dependency>
-        <groupId>com.wu</groupId>
+        <groupId>top.wu2020</groupId>
         <artifactId>wu-easy-excel-starter</artifactId>
         <version>1.0.1-SNAPSHOT</version>
      </dependency>

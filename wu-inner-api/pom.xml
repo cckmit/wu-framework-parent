@@ -5,13 +5,13 @@
     <parent>
         <artifactId>wu-framework-parent</artifactId>
         <groupId>top.wu2020</groupId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>wu-inner-api</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <modules>
         <module>wu-sys-api</module>
     </modules>

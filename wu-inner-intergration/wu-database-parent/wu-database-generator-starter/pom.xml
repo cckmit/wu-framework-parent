@@ -5,12 +5,12 @@
     <parent>
         <artifactId>wu-database-parent</artifactId>
         <groupId>top.wu2020</groupId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>wu-database-generator-starter</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <dependencies>
         <dependency>

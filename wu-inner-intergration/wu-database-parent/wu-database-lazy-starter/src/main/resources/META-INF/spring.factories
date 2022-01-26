@@ -3,6 +3,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.wu.framework.inner.lazy.database.expand.database.persistence.proxy.LazyOperationProxy,\
 com.wu.framework.inner.lazy.database.expand.database.persistence.PerfectLazyOperation,\
 com.wu.framework.inner.lazy.database.expand.database.persistence.config.LazyOperationProxyBeanConfig,\
+com.wu.framework.inner.lazy.database.expand.database.persistence.config.LazyDataSourceConfig,\
 com.wu.framework.inner.lazy.database.expand.database.persistence.method.LazyMethodConfig
 
 

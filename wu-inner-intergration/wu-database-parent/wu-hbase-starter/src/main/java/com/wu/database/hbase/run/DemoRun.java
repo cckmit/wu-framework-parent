@@ -3,7 +3,7 @@ package com.wu.database.hbase.run;
 import com.wu.framework.inner.layer.web.EasyController;
 import com.wu.framework.inner.lazy.hbase.expland.bo.HBaseUserBo;
 import com.wu.framework.inner.lazy.hbase.expland.persistence.HBaseOperation;
-import com.wu.framework.inner.lazy.hbase.expland.persistence.proxy.HBaseOperationProxy;
+import lombok.val;
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
@@ -25,11 +25,13 @@ public class DemoRun {
 
     private final Connection connection;
     private final HBaseOperation hBaseOperation;
+    private final Admin admin;
 
 
-    public DemoRun(Connection connection, HBaseOperation hBaseOperation) {
+    public DemoRun(Connection connection, HBaseOperation hBaseOperation, Admin admin) {
         this.connection = connection;
         this.hBaseOperation = hBaseOperation;
+        this.admin = admin;
     }
 
 
@@ -39,7 +41,7 @@ public class DemoRun {
 //        boolean user = admin.tableExists(TableName.valueOf("hbase_user"));
         List<HBaseUserBo> hBaseUserBoList = new ArrayList<>();
         long a = System.currentTimeMillis();
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 1000; i++) {
             hBaseUserBoList.add(new HBaseUserBo().setUserName("hbase_user").setAge("12").setSex("男").setId(i));
         }
         long b = System.currentTimeMillis();
@@ -47,28 +49,20 @@ public class DemoRun {
         hBaseOperation.insertList(hBaseUserBoList);
         b = System.currentTimeMillis();
         System.out.println("跑的真快" + (b - a));
-//        HTableDescriptor[] hTableDescriptors = admin.listTables();
-//        HTableDescriptor desc = new HTableDescriptor("easy1");
-//        desc.addFamily(new HColumnDescriptor("cf1"));
-//        admin.createTable(desc);
-//        Table easy = connection.getTable(TableName.valueOf("easy12"));
-//        System.out.println(admin.tableExists(TableName.valueOf("easy")));
-//        admin.disableTable(TableName.valueOf("hbase_user"));
-//        admin.deleteTable(TableName.valueOf("hbase_user"));
-//        HTableDescriptor hTableDescriptor = new HTableDescriptor(TableName.valueOf("hbase_user"));
-
-//        hTableDescriptor.addFamily(new HColumnDescriptor("columnFamily"));
-//        hTableDescriptor.addFamily(new HColumnDescriptor("A2"));
-//        hTableDescriptor.addFamily(new HColumnDescriptor("A3"));
-//        admin.createTable(hTableDescriptor);
 
 
-//        final List<TableDescriptor> tableDescriptors = admin.listTableDescriptors();
-//        for (TableDescriptor tableDescriptor : tableDescriptors) {
+        final List<TableDescriptor> tableDescriptors = admin.listTableDescriptors();
+        for (TableDescriptor tableDescriptor : tableDescriptors) {
+            val columnFamilies = tableDescriptor.getColumnFamilies();
+            for (ColumnFamilyDescriptor columnFamily : columnFamilies) {
+                System.out.println(String.format("表%s,列蔟%s", tableDescriptor.getTableName().getNameAsString(),columnFamily.getNameAsString()));
+            }
 //            System.out.println(String.format("表%s数据", tableDescriptor.getTableName().getNameAsString()));
 //            System.out.println(scanAllRecord(tableDescriptor.getTableName().getNameAsString()));
-//        }
+        }
     }
+
+
 
     public String scanAllRecord(String tableName) throws IOException {
         String record = "";
@@ -91,5 +85,11 @@ public class DemoRun {
 
         return record;
     }
+
+
+    public String[] showDataBases() throws IOException {
+        return admin.listNamespaces();
+    }
+
 
 }

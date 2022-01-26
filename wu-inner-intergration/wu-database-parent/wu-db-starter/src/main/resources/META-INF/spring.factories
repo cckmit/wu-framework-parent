@@ -1,5 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wu.framework.inner.db.config.MybatisPlusConfig,\
-com.wu.framework.inner.db.component.web.DBWebMvcConfigurer,\
-com.wu.framework.inner.db.config.pro.DBPageConfigPro

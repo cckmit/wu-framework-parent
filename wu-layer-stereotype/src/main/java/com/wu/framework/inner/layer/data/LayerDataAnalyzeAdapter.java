@@ -1,7 +1,9 @@
 package com.wu.framework.inner.layer.data;
 
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 
+import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +24,7 @@ public interface LayerDataAnalyzeAdapter {
         for (Object object : objects) {
             Class<?> aClass = object.getClass();
             // 类上没有注解 不下钻
-            final LayerData lazyTable = AnnotationUtils.getAnnotation(aClass, LayerData.class);
+            final LayerData lazyTable = AnnotatedElementUtils.findMergedAnnotation(aClass, LayerData.class);
             if (null == lazyTable || !lazyTable.dataDrillDown()) {
                 extractList.add(Collections.singletonList(object));
                 continue;

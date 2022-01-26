@@ -1,5 +1,6 @@
 package com.wu.framework.inner.lazy.hbase.expland.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.Admin;
@@ -21,7 +22,8 @@ import java.util.concurrent.Executors;
  * @describe :
  * @date : 2021/3/29 10:11 下午
  */
-@ConditionalOnProperty(prefix = "spring.hbase", value = "zookeeper-quorum")
+@Slf4j
+@ConditionalOnProperty(prefix = HBaseConfigProperties.CONF_PREFIX, value = "zookeeper-quorum")
 public class HBaseOperationConfig {
 
     private static ExecutorService pool = Executors.newScheduledThreadPool(20);    //设置hbase连接池
@@ -45,7 +47,7 @@ public class HBaseOperationConfig {
         for (Map.Entry<String, String> confEntry : confMap.entrySet()) {
             conf.set(confEntry.getKey(), confEntry.getValue());
         }
-        System.out.println("init hbaseClientConnection success");
+        log.info("init hbaseClientConnection success");
         return ConnectionFactory.createConnection(conf, pool);
     }
 

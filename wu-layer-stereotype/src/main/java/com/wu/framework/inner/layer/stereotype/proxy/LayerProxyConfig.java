@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * description  层代理配置  //TODO
  *
- * @author 吴佳伟
+ * @author Jia wei Wu
  * @date 2021/4/7 下午3:14
  */
 public class LayerProxyConfig implements InitializingBean {

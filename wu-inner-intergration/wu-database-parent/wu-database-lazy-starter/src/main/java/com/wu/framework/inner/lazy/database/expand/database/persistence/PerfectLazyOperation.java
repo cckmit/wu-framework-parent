@@ -33,7 +33,7 @@ public class PerfectLazyOperation implements MySQLDataProcessAnalyze {
      * @param
      * @return
      * @exception/throws
-     * @author 吴佳伟
+     * @author Jia wei Wu
      * @date 2021/4/8 下午4:33
      */
    public  <T> void scroll( Page page, @NonNull Class<T> returnType, String sql,

@@ -21,7 +21,7 @@ public class MySQLGeneratorEntityUtil {
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static final String SQL = "SELECT * FROM ";// 数据库操作
     // 数据库配置信息
-    private static final String URL = "jdbc:mysql://www.wu2020.top:3306/INFORMATION_SCHEMA";
+    private static final String URL = "jdbc:mysql://easy.com:3306/INFORMATION_SCHEMA";
     private static final String NAME = "root";
     private static final String PASS = "wujiawei";
     private static final String DRIVER = "com.mysql.jdbc.Driver";

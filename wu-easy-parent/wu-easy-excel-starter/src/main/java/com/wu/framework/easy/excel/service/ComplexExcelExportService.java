@@ -279,11 +279,11 @@ public class ComplexExcelExportService implements ExcelExcelService {
 
     }
 
-    public static void main(String[] args) {
-        int a = 99;
-        a = xx(a);
-        System.out.println("外面的结果" + a);
-    }
+//    public static void main(String[] args) {
+//        int a = 99;
+//        a = xx(a);
+//        System.out.println("外面的结果" + a);
+//    }
 
     @Data
     @AllArgsConstructor

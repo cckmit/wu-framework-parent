@@ -3,6 +3,7 @@ package com.wu.framework.inner.lazy.database.expand.database.persistence.analyze
 import com.wu.framework.inner.layer.CamelAndUnderLineConverter;
 import com.wu.framework.inner.layer.stereotype.LayerField;
 import com.wu.framework.inner.layer.stereotype.analyze.LayerAnalyzeAdapter;
+import com.wu.framework.inner.layer.stereotype.analyze.LayerClassAnalyzeAdapter;
 import com.wu.framework.inner.lazy.database.expand.database.persistence.conf.UpsertJsonMessage;
 import com.wu.framework.inner.lazy.database.expand.database.persistence.domain.ConvertedField;
 import com.wu.framework.inner.lazy.database.expand.database.persistence.domain.LazyTableAnnotation;
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
 
 import static com.wu.framework.inner.lazy.database.expand.database.persistence.analyze.EasyAnnotationConverter.annotationConvertConversion;
 
-public interface SQLAnalyze extends LayerAnalyzeAdapter {
+public interface SQLAnalyze extends LayerClassAnalyzeAdapter {
 
     Logger log = LoggerFactory.getLogger(SQLAnalyze.class);
 
@@ -115,18 +116,6 @@ public interface SQLAnalyze extends LayerAnalyzeAdapter {
     }
 
 
-    /**
-    * @describe 将class 分析成建表语句
-    * @param
-    * @return
-    * @author Jia wei Wu
-    * @date 2021/4/18 11:20 上午
-    **/
-    @Override
-    default String analyze(Class clazz) {
-        LazyTableAnnotation lazyTableAnnotation = classLazyTableAnalyze(clazz);
-        return lazyTableAnnotation.creatTableSQL();
-    }
 
     /**
      * 获取 表名称
@@ -213,13 +202,13 @@ public interface SQLAnalyze extends LayerAnalyzeAdapter {
                         continue;
                     }
                     Object fieldVal = declaredField.get(o);
-                    LazyTableField LazyTableField = AnnotationUtils.getAnnotation(declaredField, LazyTableField.class);
-                    if (!ObjectUtils.isEmpty(LazyTableField) && !LazyTableField.exist()) {
+                    LazyTableField lazyTableField = AnnotationUtils.getAnnotation(declaredField, LazyTableField.class);
+                    if (!ObjectUtils.isEmpty(lazyTableField) && !lazyTableField.exist()) {
                         continue;
                     }
                     if (ObjectUtils.isEmpty(fieldVal)) {
-                        if (null != LazyTableField && !ObjectUtils.isEmpty(LazyTableField.fieldDefaultValue())) {
-                            fieldVal = LazyTableField.fieldDefaultValue();
+                        if (null != lazyTableField && !ObjectUtils.isEmpty(lazyTableField.fieldDefaultValue())) {
+                            fieldVal = lazyTableField.fieldDefaultValue();
                         } else {
                             fieldVal = "NULL";
                         }
@@ -344,7 +333,7 @@ public interface SQLAnalyze extends LayerAnalyzeAdapter {
      * @author Jia wei Wu
      * @date 2020/7/8 下午1:06
      */
-    public default String createSelectSQL(Class clazz) {
+    default String createSelectSQL(Class clazz) {
         /**
          *     <sql id="SEARCH_CONDITION_SQL">
          *         <where>
@@ -530,14 +519,11 @@ public interface SQLAnalyze extends LayerAnalyzeAdapter {
         if (!CLASS_CUSTOM_TABLE_ANNOTATION_ATTR_MAP.containsKey(clazz)) {
             LazyTable lazyTable = AnnotatedElementUtils.findMergedAnnotation(clazz, LazyTable.class);
             String className = clazz.getName();
-            String tableName = CamelAndUnderLineConverter.humpToLine2(clazz.getSimpleName());
+            String tableName = analyze(clazz).name();
             String comment = "";
             boolean smartFillField = false;
             LazyTableAnnotation lazyTableAnnotation = new LazyTableAnnotation();
             if (null != lazyTable) {
-                if (!ObjectUtils.isEmpty(lazyTable.tableName())) {
-                    tableName = lazyTable.tableName();
-                }
                 lazyTableAnnotation.setSchema(lazyTable.schema());
                 smartFillField = lazyTable.smartFillField();
             }

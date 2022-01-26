@@ -5,9 +5,10 @@ import java.util.List;
 /**
  * @author : Jia wei Wu
  * @version 1.0
- * @describe : 常量
+ * @describe : 常量 弃用使用策略方式调整为方法上直接找到数据
  * @date : 2021/3/29 7:34 下午
  */
+@Deprecated
 public class HBaseOperationMethodCounts {
 
 

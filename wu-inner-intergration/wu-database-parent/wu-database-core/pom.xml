@@ -5,12 +5,12 @@
     <parent>
         <artifactId>wu-database-parent</artifactId>
         <groupId>top.wu2020</groupId>
-        <version>1.0.3</version>
+        <version>1.0.4</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>wu-database-core</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <dependencies>
 
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>top.wu2020</groupId>
             <artifactId>wu-easy-stereotype</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </dependency>
     </dependencies>
 

@@ -1,7 +1,7 @@
 package com.wu.bionic.language.vocalize.uo;
 
 
-import com.wu.framework.easy.stereotype.upsert.EasySmart;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Accessors(chain = true)
 @Data
-@EasySmart(perfectTable = true)
 public class MusicUo {
 
     private MultipartFile multipartFile;
